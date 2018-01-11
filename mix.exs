@@ -9,6 +9,7 @@ defmodule ExPerHash.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      compilers: [:make, :elixir, :app],
+     package: package(),
      aliases: aliases(),
      deps: deps()]
   end
@@ -24,21 +25,38 @@ defmodule ExPerHash.Mixfile do
   defp deps do
     []
   end
+
+  defp package do
+    [
+      files: [
+        "lib",
+        "priv",
+        "mix.exs",
+        "README*",
+        "readme*",
+        "LICENSE*",
+        "license*"
+      ],
+      maintainers: ["Ookami Kenrou <ookamikenrou@gmail.com>"],
+      licenses: ["WTFPL"],
+      links: %{"GitHub" => "https://github.com/laava-id/experhash"}
+    ]
+  end
 end
 
 defmodule Mix.Tasks.Compile.Make do
   @shortdoc "Compile C++ code"
   use Mix.Task
-   
+
   def run(_) do
     ## for windows install GNUWin32 to compile
-    {result, _error_code} = System.cmd("make", [], stderr_to_stdout: true) 
+    {result, _error_code} = System.cmd("make", [], stderr_to_stdout: true)
     Mix.shell.info result
-    
+
     :ok
   end
 end
-  
+
 defmodule Mix.Tasks.Clean.Make do
   @shortdoc "Delete generated C++ files"
   use Mix.Task
@@ -46,8 +64,7 @@ defmodule Mix.Tasks.Clean.Make do
   def run(_) do
     {result, _error_code} = System.cmd("make", ['clean'], stderr_to_stdout: true)
     Mix.shell.info result
-    
+
     :ok
   end
 end
-

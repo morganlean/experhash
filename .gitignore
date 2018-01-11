@@ -5,3 +5,5 @@ erl_crash.dump
 *.o
 *.d
 *.ez
+
+.DS_Store
