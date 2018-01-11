@@ -2,16 +2,18 @@ defmodule ExPerHash.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :experhash,
+    [
+      app: :experhash,
       name: "ExPerHash",
-     version: "0.2.0",
-     elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     compilers: [:make, :elixir, :app],
-     package: package(),
-     aliases: aliases(),
-     deps: deps()]
+      version: "0.2.1",
+      elixir: "~> 1.0",
+      build_embedded: Mix.env == :prod,
+      start_permanent: Mix.env == :prod,
+      compilers: [:make, :elixir, :app],
+      package: package(),
+      aliases: aliases(),
+      deps: deps()
+    ]
   end
 
   def application do
@@ -29,6 +31,7 @@ defmodule ExPerHash.Mixfile do
   defp package do
     [
       files: [
+        "cpp",
         "lib",
         "priv",
         "mix.exs",
